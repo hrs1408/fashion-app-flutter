@@ -4,13 +4,14 @@ class Product {
   String? price;
   String? description;
   String? image;
-
+  int? quantity;
   Product({
     this.id,
     this.title,
     this.price,
     this.description,
     this.image,
+    this.quantity,
   });
 
   factory Product.fromJson(Map<String, dynamic> obj) {
