@@ -9,7 +9,9 @@ import 'package:shopping_cart/provider/productProvider.dart';
 import 'cartScreen.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const MaterialApp(
+    home: MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -38,28 +40,29 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
+class _MyHomePageState extends State<MyHomePage>
+    with SingleTickerProviderStateMixin {
   late TabController tabController;
+  static const List<Tab> tabs = <Tab>[
+    Tab(
+      icon: Icon(Icons.grid_on),
+    ),
+    Tab(
+      icon: Icon(Icons.list),
+    ),
+  ];
+  @override
+  initState() {
+    tabController = TabController(length: tabs.length, vsync: this);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    tabController = TabController(length: 2, vsync: this);
     var productProvider = Provider.of<ProductProvider>(context);
     productProvider.getListProduct();
     var cartProvider = Provider.of<CartProvider>(context);
     cartProvider.getCartList();
-
-    var tabBarItem = TabBar(
-      tabs: const [
-        Tab(
-          icon: Icon(Icons.grid_on),
-        ),
-        Tab(
-          icon: Icon(Icons.list),
-        ),
-      ],
-      controller: tabController,
-      indicatorColor: Colors.white,
-    );
 
     var listItem = ListView.builder(
       itemCount: productProvider.listProduct.length,
@@ -156,7 +159,10 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
               ),
             )
           ],
-          bottom: tabBarItem,
+          bottom: TabBar(
+            tabs: tabs,
+            controller: tabController,
+          ),
         ),
         body: TabBarView(
           controller: tabController,
