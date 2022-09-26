@@ -13,7 +13,7 @@ class ProductProvider extends ChangeNotifier {
       var data = json.decode(response.body);
       listProduct =
           data.map<Product>((json) => Product.fromJson(json)).toList();
-      notifyListeners();
     }
+    notifyListeners();
   }
 }
