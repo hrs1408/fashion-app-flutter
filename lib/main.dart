@@ -1,7 +1,6 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shopping_cart/loginScreen.dart';
 import 'package:shopping_cart/provider/cartProvider.dart';
 import 'package:shopping_cart/provider/productProvider.dart';
 
@@ -9,7 +8,7 @@ import 'cartScreen.dart';
 
 void main() {
   runApp(const MaterialApp(
-    home: LoginScreen(),
+    home: MyApp(),
   ));
 }
 
