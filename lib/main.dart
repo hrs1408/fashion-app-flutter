@@ -1,7 +1,9 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shopping_cart/loginScreen.dart';
 import 'package:shopping_cart/provider/cartProvider.dart';
+import 'package:shopping_cart/provider/login_provider.dart';
 import 'package:shopping_cart/provider/productProvider.dart';
 
 import 'cartScreen.dart';
@@ -18,10 +20,11 @@ class MyApp extends StatelessWidget {
         providers: [
           ChangeNotifierProvider(create: (context) => ProductProvider()),
           ChangeNotifierProvider(create: (context) => CartProvider()),
+          ChangeNotifierProvider(create: (context) => LoginProvider()),
         ],
         child: MaterialApp(
           title: 'Store',
-          home: MyHomePage(),
+          home: LoginScreen(),
           theme: ThemeData(
             primarySwatch: Colors.blueGrey,
           ),
